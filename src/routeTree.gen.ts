@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CennikRouteImport } from './routes/cennik'
+import { Route as LogowanieRouteImport } from './routes/logowanie'
+import { Route as PanelRouteImport } from './routes/panel'
+import { Route as WycenaRouteImport } from './routes/wycena'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CennikRoute = CennikRouteImport.update({
+  id: '/cennik',
+  path: '/cennik',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogowanieRoute = LogowanieRouteImport.update({
+  id: '/logowanie',
+  path: '/logowanie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanelRoute = PanelRouteImport.update({
+  id: '/panel',
+  path: '/panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WycenaRoute = WycenaRouteImport.update({
+  id: '/wycena',
+  path: '/wycena',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cennik': typeof CennikRoute
+  '/logowanie': typeof LogowanieRoute
+  '/panel': typeof PanelRoute
+  '/wycena': typeof WycenaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cennik': typeof CennikRoute
+  '/logowanie': typeof LogowanieRoute
+  '/panel': typeof PanelRoute
+  '/wycena': typeof WycenaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cennik': typeof CennikRoute
+  '/logowanie': typeof LogowanieRoute
+  '/panel': typeof PanelRoute
+  '/wycena': typeof WycenaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/cennik' | '/logowanie' | '/panel' | '/wycena'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/cennik' | '/logowanie' | '/panel' | '/wycena'
+  id: '__root__' | '/' | '/cennik' | '/logowanie' | '/panel' | '/wycena'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CennikRoute: typeof CennikRoute
+  LogowanieRoute: typeof LogowanieRoute
+  PanelRoute: typeof PanelRoute
+  WycenaRoute: typeof WycenaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cennik': {
+      id: '/cennik'
+      path: '/cennik'
+      fullPath: '/cennik'
+      preLoaderRoute: typeof CennikRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logowanie': {
+      id: '/logowanie'
+      path: '/logowanie'
+      fullPath: '/logowanie'
+      preLoaderRoute: typeof LogowanieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panel': {
+      id: '/panel'
+      path: '/panel'
+      fullPath: '/panel'
+      preLoaderRoute: typeof PanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wycena': {
+      id: '/wycena'
+      path: '/wycena'
+      fullPath: '/wycena'
+      preLoaderRoute: typeof WycenaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CennikRoute: CennikRoute,
+  LogowanieRoute: LogowanieRoute,
+  PanelRoute: PanelRoute,
+  WycenaRoute: WycenaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
