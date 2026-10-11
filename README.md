@@ -1,14 +1,26 @@
-# Welcome to your Lovable project
+# Tailor Showcase Studio
+
+Stwórz nowoczesną, minimalistyczną stronę internetową dla profesjonalnej pracowni krawieckiej. Strona powinna zawierać:
+
+Stronę główną z eleganckim nagłówkiem, sekcją O nas oraz galerią realizacji (siatka zdjęć z przykładowymi garniturami i przeróbkami).
+
+Cennik usług krawieckich w formie przejrzystej tabeli.
+
+Formularz szybkiej wyceny online dla klienta.
+
+Funkcję logowania użytkownika oraz prosty, ukryty panel administracyjny dostępny po zalogowaniu, w którym administrator może zarządzać cennikiem i dodawać nowe pozycje do galerii."*
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://tailor-showcase-studio.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/247291d6-a00f-4113-ab5d-c11bf7a0857a).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +32,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
