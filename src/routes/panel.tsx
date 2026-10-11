@@ -65,12 +65,12 @@ function Prices() {
       price: String(fd.get("price")).trim().slice(0, 40),
       sort_order: data.length + 1,
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     form.reset();
     refresh();
   };
   const update = async (id: string, field: "category" | "name" | "price", value: string) => {
-    const { error } = await supabase.from("price_items").update({ [field]: value }).eq("id", id);
+    const { error } = await supabase.from("price_items").update({ [field]: value } as { category?: string; name?: string; price?: string }).eq("id", id);
     if (error) toast.error(error.message); else refresh();
   };
   const remove = async (id: string) => {
@@ -111,21 +111,21 @@ function Gallery() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const file = fd.get("file") as File;
-    if (!file || !file.size) return toast.error("Wybierz zdjęcie");
-    if (!file.type.startsWith("image/")) return toast.error("Plik musi być obrazem");
+    if (!file || !file.size) { toast.error("Wybierz zdjęcie"); return; }
+    if (!file.type.startsWith("image/")) { toast.error("Plik musi być obrazem"); return; }
     setBusy(true);
     const path = `${crypto.randomUUID()}.${file.name.split(".").pop()}`;
     const up = await supabase.storage.from("gallery").upload(path, file);
-    if (up.error) { setBusy(false); return toast.error(up.error.message); }
+    if (up.error) { setBusy(false); { toast.error(up.error.message); return; } }
     const signed = await supabase.storage.from("gallery").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
-    if (signed.error) { setBusy(false); return toast.error(signed.error.message); }
+    if (signed.error) { setBusy(false); { toast.error(signed.error.message); return; } }
     const { error } = await supabase.from("gallery_items").insert({
       title: String(fd.get("title")).trim().slice(0, 120),
       description: String(fd.get("description")).trim().slice(0, 300) || null,
       image_url: signed.data.signedUrl,
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     form.reset();
     toast.success("Dodano do galerii");
     qc.invalidateQueries({ queryKey: ["gallery"] });

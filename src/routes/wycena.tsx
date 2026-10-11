@@ -40,11 +40,11 @@ function Wycena() {
     e.preventDefault();
     const fd = Object.fromEntries(new FormData(e.currentTarget));
     const parsed = schema.safeParse(fd);
-    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? "Błąd formularza"); return; }
     setBusy(true);
     const { error } = await supabase.from("quote_requests").insert({ ...parsed.data, phone: parsed.data.phone || null });
     setBusy(false);
-    if (error) return toast.error("Nie udało się wysłać. Spróbuj ponownie.");
+    if (error) { toast.error("Nie udało się wysłać. Spróbuj ponownie."); return; }
     setSent(true);
   };
 
